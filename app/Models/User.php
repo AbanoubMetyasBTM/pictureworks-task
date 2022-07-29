@@ -9,6 +9,7 @@ class User extends Model
 
     protected $table      = "users";
     protected $primaryKey = "id";
+    public    $timestamps = false;
 
     protected $fillable = [
         'name',
@@ -22,5 +23,22 @@ class User extends Model
         return self::find($userId);
 
     }
+
+    public static function updateUserComments(object $userObj, string $newComment)
+    {
+
+        try {
+
+            $userObj->update([
+                "comments" => $userObj->comments . "\n" . $newComment
+            ]);
+
+        } catch (\Exception $exception) {
+            return $exception->getMessage();
+        }
+
+        return true;
+    }
+
 
 }
