@@ -13,14 +13,13 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
+
 		Schema::create('users', function(Blueprint $table)
 		{
 			$table->bigInteger('id', true)->unsigned();
 			$table->string('name')->nullable();
 			$table->text('comments')->nullable();
 		});
-
-        (new \Database\Seeders\UserSeeder())->run();
 
 	}
 
