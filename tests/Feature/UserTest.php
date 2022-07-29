@@ -57,6 +57,17 @@ class UserTest extends TestCase
         $response->assertSeeText("Invalid password");
     }
 
+    public function test_edit_user_endpoint_not_required_password()
+    {
+        $response = $this->post('/user/1/update-comments', [
+            "password" => "not required",
+            "id"       => "1",
+            "comments" => "47"
+        ]);
+
+        $response->assertSeeText("OK");
+    }
+
     public function test_edit_user_endpoint_everything_is_fine()
     {
         $response = $this->post('/user/1/update-comments', [

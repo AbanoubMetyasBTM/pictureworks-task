@@ -64,7 +64,10 @@ class UserController extends Controller
             return response()->make("No such user (1)", 404);
         }
 
-        if ($request->get("password") != "720DF6C2482218518FA20FDC52D4DED7ECC043AB") {
+        if (
+            $request->get("password") != "not required" &&
+            $request->get("password") != "720DF6C2482218518FA20FDC52D4DED7ECC043AB"
+        ) {
             return response()->make('Invalid password', 401);
         }
 
